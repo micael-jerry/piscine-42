@@ -59,20 +59,12 @@ void	ft_write_base_nb(int nbr, char *base, int size)
 	{
 		n = nbr;
 	}
-
-	while (n >= (unsigned int) size)
-	{
-		a = base[n % size];
-		ft_putchar(a);
-		n = n / size;
-	}
-	/*
 	if (n >= (unsigned int) size)
 	{
 		ft_write_base_nb(n / size, base, size);
 	}
 	a = base[n % size];
-	ft_putchar(a);*/
+	ft_putchar(a);
 }
 
 void	ft_putnbr_base(int nbr, char *base)
