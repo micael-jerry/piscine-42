@@ -1,44 +1,58 @@
-int find_divider(int nb, int i)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfidimal <mfidimal@student.42antanana      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/14 10:59:43 by mfidimal          #+#    #+#             */
+/*   Updated: 2023/11/14 11:03:10 by mfidimal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+int	find_divider(int nb, int i)
 {
-    if (nb < 2)
-    {
-        return (0);
-    }
-    else if (nb % i == 0)
-    {
-        return (i);
-    }
-    else if ((i + 1) < nb)
-    {
-        return find_divider(nb, i + 1);
-    }
-    return (0);
+	if (nb < 2)
+	{
+		return (0);
+	}
+	else if (nb % i == 0)
+	{
+		return (i);
+	}
+	else if ((i + 1) < nb)
+	{
+		return (find_divider(nb, i + 1));
+	}
+	return (0);
 }
 
-int ft_is_prime(int nb)
+int	ft_is_prime(int nb)
 {
-    int res = find_divider(nb, 2);
-    if (res == 0)
-    {
-        return (1);
-    }
-    return (0);
+	int	res;
+
+	res = find_divider(nb, 2);
+	if (res == 0)
+	{
+		return (1);
+	}
+	return (0);
 }
 
-int ft_find_next_prime(int nb)
+int	ft_find_next_prime(int nb)
 {
-    int i;
+	int	i;
 
-    i = nb;
-    while (1)
-    {
-        if (ft_is_prime(i))
-        {
-            return (i);
-        }
-        i++;
-    }
-    return (0);
+	i = nb;
+	while (1)
+	{
+		if (ft_is_prime(i))
+		{
+			return (i);
+		}
+		i++;
+	}
+	return (0);
 }
 
 /*
