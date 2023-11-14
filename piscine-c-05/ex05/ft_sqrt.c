@@ -12,14 +12,14 @@
 
 int	ft_sqrt(int nb)
 {
-	int i;
+	unsigned int i;
 
 	i = 1;
 	if (nb < 0)
 		return (0);
-	while ((i * i) <= nb)
+	while ((i * i) <= (unsigned int) nb)
 	{
-		if ((i * i) == nb)
+		if ((i * i) == (unsigned int) nb)
 			return (i);
 		i++;
 	}
