@@ -41,6 +41,7 @@ int ft_find_next_prime(int nb)
     return (0);
 }
 
+/*
 #include <stdio.h>
 int main(void)
 {
@@ -49,3 +50,4 @@ int main(void)
     printf("%d", res);
     return 0;
 }
+*/
