@@ -10,26 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	find_divider(int nb, int i)
+int find_divider(int nb, int i)
 {
-	if (nb < 2)
+	if (nb <= 1)
 	{
-		return (0);
+		return (-1);
 	}
 	else if (nb % i == 0)
 	{
 		return (i);
 	}
-	else if ((i + 1) < nb)
+	else if (i <= (nb / 2))
 	{
 		return (find_divider(nb, i + 1));
 	}
 	return (0);
 }
 
-int	ft_is_prime(int nb)
+int ft_is_prime(int nb)
 {
-	int	res;
+	int res;
 
 	res = find_divider(nb, 2);
 	if (res == 0)
