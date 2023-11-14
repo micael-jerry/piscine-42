@@ -10,22 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	find_sqrt(int nb, int i)
-{
-	if ((nb < 0) || ((i * i) > nb))
-		return (0);
-	if (nb == 1)
-		return (1);
-	else if ((i * i) == nb)
-	{
-		return (i);
-	}
-	return (find_sqrt(nb, i + 1));
-}
-
 int	ft_sqrt(int nb)
 {
-	return (find_sqrt(nb, 0));
+	int i;
+
+	i = 1;
+	if (nb < 0)
+		return (0);
+	while ((i * i) <= nb)
+	{
+		if ((i * i) == nb)
+			return (i);
+		i++;
+	}
+	return (0);
 }
 
 /*
