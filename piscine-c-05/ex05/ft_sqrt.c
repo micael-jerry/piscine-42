@@ -13,7 +13,7 @@ int find_sqrt(int nb, int i)
 
 int ft_sqrt(int nb)
 {
-    int res = find_sqrt(nb, 0);
+    return (find_sqrt(nb, 0));
 }
 
 /*
