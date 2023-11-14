@@ -44,15 +44,11 @@ int	ft_find_next_prime(int nb)
 	int	i;
 
 	i = nb;
-	while (1)
+	while (ft_is_prime(i) == 0)
 	{
-		if (ft_is_prime(i))
-		{
-			return (i);
-		}
 		i++;
 	}
-	return (0);
+	return (i);
 }
 
 /*
