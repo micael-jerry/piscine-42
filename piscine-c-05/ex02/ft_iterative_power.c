@@ -13,20 +13,20 @@
 int	ft_iterative_power(int nb, int power)
 {
 	int	i;
-	int	result;
+	int	res;
 
 	if (power < 0)
 		return (0);
-	if (power == 0 && nb == 0)
+	if (power == 0)
 		return (1);
-	result = 1;
-	i = 1;
-	while (i <= power)
+	res = nb;
+	i = power;
+	while (i > 1)
 	{
-		result *= nb;
-		i++;
+		res *= nb;
+		i--;
 	}
-	return (result);
+	return (res);
 }
 
 /*
