@@ -1,53 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_rev_params.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfidimal <mfidimal@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 09:38:08 by mfidimal          #+#    #+#             */
-/*   Updated: 2023/11/16 09:40:52 by mfidimal         ###   ########.fr       */
+/*   Created: 2023/11/14 14:31:39 by mfidimal          #+#    #+#             */
+/*   Updated: 2023/11/14 14:44:23 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <unistd.h>
 
-int	ft_strlen(char *str)
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putstr(char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
 	{
+		ft_putchar(str[i]);
 		i++;
 	}
-	return (i);
 }
 
-char	*ft_strdup(char *src)
+void	ft_rev_params(int argc, char **argv)
 {
 	int	i;
-	char	
-		*copy;
 
-	i = 0;
-	copy = malloc(sizeof(char) * ft_strlen(src) + sizeof('\0'));
-	while (src[i] != '\0')
+	i = argc - 1;
+	if (argc >= 1)
 	{
-		copy[i] = src[i];
-		i++;
+		while (i >= 1)
+		{
+			ft_putstr(argv[i]);
+			ft_putchar('\n');
+			i--;
+		}
 	}
-	copy[i] = '\0';
-	return (copy);
 }
 
-/*
-#include <stdio.h>
-int main(void)
+int	main(int argc, char **argv)
 {
-    char *str = "test";
-    char *cp = ft_strdup(str);
-    printf("%s\n", cp);
-    return 0;
+	ft_rev_params(argc, argv);
+	return (0);
 }
-*/

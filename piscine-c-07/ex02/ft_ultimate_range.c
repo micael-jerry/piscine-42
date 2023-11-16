@@ -1,53 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfidimal <mfidimal@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 09:38:08 by mfidimal          #+#    #+#             */
-/*   Updated: 2023/11/16 09:40:52 by mfidimal         ###   ########.fr       */
+/*   Created: 2023/11/16 11:52:24 by mfidimal          #+#    #+#             */
+/*   Updated: 2023/11/16 14:43:23 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int	ft_strlen(char *str)
+int	ft_ultimate_range(int **range, int min, int max)
 {
+	int	*result;
 	int	i;
 
-	i = 0;
-	while (str[i] != '\0')
+	result = NULL;
+	if (min >= max)
 	{
+		return (-1);
+	}
+	i = 0;
+	result = malloc(sizeof(int) * (max - min) + sizeof('\0'));
+	while ((i + min) < max)
+	{
+		result[i] = i + min;
 		i++;
 	}
-	return (i);
+	result[i] = '\0';
+	return (result);
 }
-
-char	*ft_strdup(char *src)
-{
-	int	i;
-	char	
-		*copy;
-
-	i = 0;
-	copy = malloc(sizeof(char) * ft_strlen(src) + sizeof('\0'));
-	while (src[i] != '\0')
-	{
-		copy[i] = src[i];
-		i++;
-	}
-	copy[i] = '\0';
-	return (copy);
-}
-
-/*
-#include <stdio.h>
-int main(void)
-{
-    char *str = "test";
-    char *cp = ft_strdup(str);
-    printf("%s\n", cp);
-    return 0;
-}
-*/
