@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 int ft_strlen(char *str)
 {
@@ -41,6 +42,11 @@ char *ft_strjoin(int size, char **strs, char *sep)
     int result_len;
     char *result;
 
+    result = NULL;
+    if (size < 1)
+    {
+        return (result);
+    }
     i = 0;
     result_index = 0;
     result_len = ft_strjoin_len(size, strs, sep);
@@ -54,8 +60,32 @@ char *ft_strjoin(int size, char **strs, char *sep)
             result_index++;
             j++;
         }
+        if (i < (size - 1))
+        {
+            while (*sep != '\0')
+            {
+                result[result_index] = *sep;
+                result_index++;
+                sep++;
+            }
+        }
         i++;
     }
     result[result_index] = '\0';
     return (result);
+}
+
+int main()
+{
+    char str_1[] = "jerry";
+    char str_2[] = "jerry";
+    char sep[] = " & ";
+    char *strs[1];
+
+    strs[0] = str_1;
+    strs[1] = str_2;
+
+    char *res = ft_strjoin(2, strs, sep);
+    printf("result: %s", res);
+    return 0;
 }
