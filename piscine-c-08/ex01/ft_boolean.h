@@ -1,35 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_boolean.h                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mfidimal <mfidimal@student.42antanana      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 13:44:14 by mfidimal          #+#    #+#             */
-/*   Updated: 2023/11/18 14:00:50 by mfidimal         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#define EVEN_MSG "I have an even number of arguments."
+#define ODD_MSG "I have an odd number of arguments."
+#define SUCCESS 0
+#define EVEN(nbr) (nbr % 2 == 0) ? 1 : 0
 
-
-#include "ft_boolean.h"
-
-void	ft_putstr(char *str)
+typedef enum T_BOOL t_bool;
+enum T_BOOL
 {
-	while (*str)
-		write(1, str++, 1);
-}
-
-t_bool ft_is_even(int nbr)
-{
-	return ((EVEN(nbr)) ? TRUE : FALSE);
-}
-
-int main(int argc, char **argv)
-{
-	(void)argv;
-	if (ft_is_even(argc - 1) == TRUE)
-		ft_putstr(EVEN_MSG);
-	else
-		ft_putstr(ODD_MSG);
-	return (SUCCESS);
-}
+    FALSE = 0,
+    TRUE = 1
+};
