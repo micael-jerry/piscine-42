@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:56:28 by mfidimal          #+#    #+#             */
-/*   Updated: 2023/11/16 15:45:17 by mfidimal         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:10:42 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,33 @@ int	ft_is_prime(int nb)
 }
 
 /*
-#include <stdio.h>
-int main(void)
+unsigned int	ft_is_prime_recurcive(int nb, int i)
 {
-    int nb = 2147483647;
-    int res = ft_is_prime(nb);
-    printf("%d", res);
-    return 0;
+	if (i == 1)
+		return (1);
+	if (nb % i == 0)
+		return (0);
+	return (ft_is_prime_recurcive(nb, i - 1));
+}
+*/
+/*
+int	ft_is_prime_rec(int nb)
+{
+	unsigned int	res;
+
+	if (nb < 2)
+		return (0);
+	res = ft_is_prime_recurcive((unsigned int) nb, (unsigned int) nb / 2);
+	return ((int) res);
+}
+*/
+/*
+#include <stdio.h>
+int	main(void)
+{
+	int	nb = 2147483620; //2147483629;
+	int	res = ft_is_prime(nb);
+	printf("%d\n", res);
+	return (0);
 }
 */

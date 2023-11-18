@@ -6,16 +6,11 @@
 /*   By: mfidimal <mfidimal@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:49:41 by mfidimal          #+#    #+#             */
-/*   Updated: 2023/11/16 11:42:46 by mfidimal         ###   ########.fr       */
+/*   Updated: 2023/11/18 09:43:36 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
 
 int	ft_strcmp(char *s1, char *s2)
 {
@@ -36,7 +31,7 @@ void	ft_putstr(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		ft_putchar(str[i]);
+		write(1, &str[i], 1);
 		i++;
 	}
 }
@@ -49,7 +44,7 @@ void	ft_print_params(int argc, char *argv[])
 	while (i < argc)
 	{
 		ft_putstr(argv[i]);
-		ft_putchar('\n');
+		write(1, "\n", 1);
 		i++;
 	}
 }
