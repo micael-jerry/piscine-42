@@ -32,6 +32,8 @@ char	*ft_strdup(char *src)
 
 	i = 0;
 	copy = malloc(sizeof(char) * ft_strlen(src) + sizeof('\0'));
+	if (!(copy))
+		return (NULL);
 	while (src[i] != '\0')
 	{
 		copy[i] = src[i];

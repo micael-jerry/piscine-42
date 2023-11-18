@@ -52,6 +52,8 @@ char	*memory_allocation_strjoin(int size, char **strs, char *sep)
 
 	m = malloc(sizeof(char) * ft_strjoin_len(size, strs, sep)
 			+ sizeof('\0'));
+	if (!(m))
+		return (NULL);
 	return (m);
 }
 
@@ -81,6 +83,8 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	i = 0;
 	result_index = 0;
 	result = memory_allocation_strjoin(size, strs, sep);
+	if (!(result))
+		return (NULL);
 	while (i < size)
 	{
 		ft_cp_str_or_sep(result, &result_index, strs[i]);
