@@ -1,9 +1,9 @@
-#define ABS(value) ({ \
-  int result; \
-  if (value < 0) { \
-    result = -value; \
+#define ABS(Value) ({ \
+  int res; \
+  if (Value < 0) { \
+    res = -Value; \
   } else { \
-    result = value; \
+    res = Value; \
   } \
-  result; \
+  res; \
 })
