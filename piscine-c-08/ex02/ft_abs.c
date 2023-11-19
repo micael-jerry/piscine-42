@@ -1,9 +1,15 @@
-#include <stdio.h>
 #include "ft_abs.h"
+#include <stdio.h>
 
-int main(int argc, char const *argv[])
+int	main(int argc, char const *argv[])
 {
-    int nb = -9;
-    printf("nb: %d\nabs nb: %d\n", nb, ABS(nb));
-    return (0);
+    (void) argc;
+    (void) argv;
+	int	nb;
+	int	abs;
+
+	nb = -9;
+	abs = ABS(nb);
+	printf("nb: %d\nabs nb: %d\n", nb, abs);
+	return (0);
 }
