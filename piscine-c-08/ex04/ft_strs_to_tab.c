@@ -36,9 +36,9 @@ t_stock_str create_stock_str(int size, char *str, char *copy)
 {
     t_stock_str temp;
 
-    temp.size = ft_strlen(str);
+    temp.size = size;
     temp.str = str;
-    temp.copy = ft_strdup(str);
+    temp.copy = copy;
 
     return (temp);
 }
@@ -68,7 +68,6 @@ int main()
     char str_1[] = "test1";
     char str_2[] = "test2";
     char str_3[] = "test3";
-    char sep[] = "*";
     char *strs[3];
 
     strs[0] = str_1;
