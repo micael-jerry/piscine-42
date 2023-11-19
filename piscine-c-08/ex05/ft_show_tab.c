@@ -1,6 +1,5 @@
-#include <stdlib.h>
-#include "ft_stock_str.h"
 #include <unistd.h>
+#include "ft_stock_str.h"
 
 void ft_putchar(char c)
 {
@@ -40,67 +39,6 @@ void ft_putstr(char *str)
     }
 }
 
-int ft_strlen(char *str)
-{
-    int i;
-
-    i = 0;
-    while (str[i] != '\0')
-    {
-        i++;
-    }
-    return (i);
-}
-
-char *ft_strdup(char *src)
-{
-    int i;
-    char
-        *copy;
-
-    i = 0;
-    copy = malloc(sizeof(char) * ft_strlen(src) + sizeof('\0'));
-    if (!(copy))
-        return (NULL);
-    while (src[i] != '\0')
-    {
-        copy[i] = src[i];
-        i++;
-    }
-    copy[i] = '\0';
-    return (copy);
-}
-
-t_stock_str create_stock_str(int size, char *str, char *copy)
-{
-    t_stock_str temp;
-
-    temp.size = size;
-    temp.str = str;
-    temp.copy = copy;
-
-    return (temp);
-}
-
-struct s_stock_str *ft_strs_to_tab(int ac, char **av)
-{
-    int i;
-    t_stock_str *result;
-
-    result = (t_stock_str *)malloc(sizeof(t_stock_str) * (ac + 1));
-    if (result == NULL)
-        return (NULL);
-    i = 0;
-    while (i < ac)
-    {
-        result[i] = create_stock_str(
-            ft_strlen(av[i]), av[i], ft_strdup(av[i]));
-        i++;
-    }
-    result[i] = create_stock_str(0, "\0", "\0");
-    return (result);
-}
-
 void ft_show_stock_str(t_stock_str stock)
 {
     ft_putstr(stock.str);
@@ -116,7 +54,7 @@ void ft_show_tab(struct s_stock_str *par)
     int i;
 
     i = 0;
-    while (par[i].size != 0)
+    while (par[i].str != 0)
     {
         ft_show_stock_str(par[i]);
         i++;
