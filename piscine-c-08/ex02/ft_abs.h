@@ -1,1 +1,9 @@
-#define ABS(Value) if (Value < 0) Value * (-1); else Value;
+#define ABS(value) ({ \
+  int result; \
+  if (value < 0) { \
+    result = -value; \
+  } else { \
+    result = value; \
+  } \
+  result; \
+})
