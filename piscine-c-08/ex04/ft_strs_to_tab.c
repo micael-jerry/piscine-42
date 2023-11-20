@@ -1,5 +1,17 @@
-#include "ft_stock_str.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_stock_str.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfidimal <mfidimal@student.42antanana      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/20 08:37:50 by mfidimal          #+#    #+#             */
+/*   Updated: 2023/11/20 12:40:31 by mfidimal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
+#include "ft_stock_str.h"
 
 int	ft_strlen(char *str)
 {
@@ -7,31 +19,29 @@ int	ft_strlen(char *str)
 
 	i = 0;
 	while (str[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
 }
 
-char	*ft_strdup(char *src)
+char	*ft_strdup(char *str)
 {
 	int		i;
-	char	*copy;
+	char	*res;
 
-	i = 0;
-	copy = malloc(sizeof(char) * ft_strlen(src) + sizeof('\0'));
-	if (!(copy))
+	res = malloc(sizeof(char) * ft_strlen(str) + sizeof('\0'));
+	if (res == NULL)
 		return (NULL);
-	while (src[i] != '\0')
+	i = 0;
+	while (str[i] != '\0')
 	{
-		copy[i] = src[i];
+		res[i] = str[i];
 		i++;
 	}
-	copy[i] = '\0';
-	return (copy);
+	res[i] = '\0';
+	return (res);
 }
 
-t_stock_str	create_stock_str(int size, char *str, char *copy)
+struct s_stock_str	create_stock_str(int size, char *str, char *copy)
 {
 	t_stock_str	temp;
 
@@ -59,18 +69,20 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 	return (result);
 }
 
+/*
 int	main(void)
 {
-	char str_1[] = "test1";
-	char str_2[] = "test2";
-	char str_3[] = "test3";
-	char *strs[3];
+	char		str_1[] = "test1";
+	char		str_2[] = "test2";
+	char		str_3[] = "test3";
+	char		*strs[3];
+	t_stock_str	*res;
 
 	strs[0] = str_1;
 	strs[1] = str_2;
 	strs[2] = str_3;
-
-	t_stock_str *res = ft_strs_to_tab(3, strs);
+	res = ft_strs_to_tab(3, strs);
 	free(res);
 	return (0);
 }
+*/

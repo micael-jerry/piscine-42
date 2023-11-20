@@ -24,8 +24,6 @@ int	*ft_range(int min, int max)
 	}
 	i = 0;
 	result = malloc(sizeof(int) * (max - min) + sizeof('\0'));
-	if (!(result))
-		return (NULL);
 	while ((i + min) < max)
 	{
 		result[i] = i + min;

@@ -1,5 +1,17 @@
-#include "ft_stock_str.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_show_tab.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfidimal <mfidimal@student.42antanana      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/20 09:20:45 by mfidimal          #+#    #+#             */
+/*   Updated: 2023/11/20 12:41:20 by mfidimal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
+#include "ft_stock_str.h"
 
 void	ft_putchar(char c)
 {
@@ -61,19 +73,20 @@ void	ft_show_tab(struct s_stock_str *par)
 	}
 }
 
+/*
 int	main(void)
 {
-	char str_1[] = "test1";
-	char str_2[] = "test2";
-	char str_3[] = "test3";
-	char *strs[3];
+	char		str_1[] = "test1";
+	char		str_2[] = "test2";
+	char		str_3[] = "test3";
+	char		*strs[3];
+	t_stock_str	*res;
 
 	strs[0] = str_1;
 	strs[1] = str_2;
 	strs[2] = str_3;
-
-	t_stock_str *res = ft_strs_to_tab(3, strs);
+	res = ft_strs_to_tab(3, strs);
 	ft_show_tab(res);
 	free(res);
 	return (0);
-}
+}*/
