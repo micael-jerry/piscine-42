@@ -1,8 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    libft_creator.sh                                   :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mfidimal <mfidimal@student.42antanana      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/11/21 09:26:56 by mfidimal          #+#    #+#              #
+#    Updated: 2023/11/21 15:52:47 by mfidimal         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #!/bin/sh
 # https://apc.u-paris.fr/~revenu/memolinux/node103.html
 
-cc -c -Wall -Werror -Wextra *.c
+gcc -c -Wall -Werror -Wextra *.c
 
-ar r libft.a *.o
+ar rc libft.a *.o
 
 rm -rf *.o
