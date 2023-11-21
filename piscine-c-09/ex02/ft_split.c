@@ -6,7 +6,7 @@
 /*   By: mfidimal <mfidimal@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:06:07 by mfidimal          #+#    #+#             */
-/*   Updated: 2023/11/21 16:32:50 by mfidimal         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:29:08 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,63 @@ int	result_size(char *str, char *charset)
 	}
 }
 
+char	*ft_strdup(char *src)
+{
+	int	i;
+	char
+		*copy;
+
+	i = 0;
+	copy = malloc(sizeof(char) * ft_strlen(src) + sizeof('\0'));
+	while (src[i] != '\0')
+	{
+		copy[i] = src[i];
+		i++;
+	}
+	copy[i] = '\0';
+	return (copy);
+}
+
 char	**ft_split(char *str, char *charset)
 {
 	char	**result;
+	char	*temp;
+	int	i;
+	int	result_index;
+	int	charset_len;
+	int	temp_index;
+	int	is_copy;
 
-	result = malloc((char *) * result_size(str, charset));
-	if (result == NULL)
+	result = (char *) malloc(sizeof(char) * result_size(str, charset));
+	temp = malloc(sizeof(char) * strlen(str) + sizeof('\0'));
+	if (result == NULL || temp == NULL)
 		return (NULL);
-
+	i = 0;
+	result_index = 0;
+	charset_len = ft_strlen(charset);
+	temp_index = 0;
+	is_copy = 0;
+	while (str[i] != '\0')
+	{
+		if (ft_strncmp(charset, str[i], charset_len) == 0)
+		{
+			temp[temp_index] = '\0';
+			i = i + (charset_len - 1);
+			temp_index = 0;
+			is_copy = 1;
+		}
+		else
+		{
+			temp[temp_index] = str[i];
+			temp_index++;
+			i++;
+		}
+		if (is_copy)
+		{
+			result[result_index] = ft_strdup(temp);
+			is_copy = 0;
+			result_index++;
+		}
+	}
 	return (result);
 }
