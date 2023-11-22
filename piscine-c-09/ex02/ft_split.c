@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 int	ft_strlen(char *str)
 {
@@ -39,7 +40,23 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 		}
 		i++;
 	}
-	return ((unsigned char) s1[i] - (unsigned char) s2[i]);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+char *ft_strdup(char *src)
+{
+	int i;
+	char *copy;
+
+	i = 0;
+	copy = malloc(sizeof(char) * ft_strlen(src) + sizeof('\0'));
+	while (src[i] != '\0')
+	{
+		copy[i] = src[i];
+		i++;
+	}
+	copy[i] = '\0';
+	return (copy);
 }
 
 int	result_size(char *str, char *charset)
@@ -53,41 +70,27 @@ int	result_size(char *str, char *charset)
 	charset_len = ft_strlen(charset);
 	while (str[i] != '\0')
 	{
-		if (ft_strncmp(charset, str[i], charset_len) == 0)
+		if (ft_strncmp(charset, &str[i], charset_len) == 0)
 			acc++;
 		i++;
 	}
-}
-
-char	*ft_strdup(char *src)
-{
-	int	i;
-	char
-		*copy;
-
-	i = 0;
-	copy = malloc(sizeof(char) * ft_strlen(src) + sizeof('\0'));
-	while (src[i] != '\0')
-	{
-		copy[i] = src[i];
-		i++;
-	}
-	copy[i] = '\0';
-	return (copy);
+	return (acc);
 }
 
 char	**ft_split(char *str, char *charset)
 {
 	char	**result;
 	char	*temp;
-	int	i;
-	int	result_index;
-	int	charset_len;
-	int	temp_index;
-	int	is_copy;
+	int		i;
+	int		result_index;
+	int		charset_len;
+	int str_len;
+	int		temp_index;
+	int		is_copy;
 
-	result = (char *) malloc(sizeof(char) * result_size(str, charset));
-	temp = malloc(sizeof(char) * strlen(str) + sizeof('\0'));
+	str_len = ft_strlen(str);
+	result = malloc(sizeof(char *) * result_size(str, charset));
+	temp = malloc(sizeof(char) * str_len + sizeof('\0'));
 	if (result == NULL || temp == NULL)
 		return (NULL);
 	i = 0;
@@ -95,12 +98,12 @@ char	**ft_split(char *str, char *charset)
 	charset_len = ft_strlen(charset);
 	temp_index = 0;
 	is_copy = 0;
-	while (str[i] != '\0')
+	while (i < str_len)
 	{
-		if (ft_strncmp(charset, str[i], charset_len) == 0)
+		if (ft_strncmp(charset, &str[i], charset_len) == 0)
 		{
 			temp[temp_index] = '\0';
-			i = i + (charset_len - 1);
+			i = i + charset_len;
 			temp_index = 0;
 			is_copy = 1;
 		}
@@ -110,12 +113,34 @@ char	**ft_split(char *str, char *charset)
 			temp_index++;
 			i++;
 		}
-		if (is_copy)
+		if (is_copy || i == str_len)
 		{
+			if (i == str_len)
+			{
+				temp[temp_index] = '\0';
+				temp_index = 0;
+			}
 			result[result_index] = ft_strdup(temp);
 			is_copy = 0;
 			result_index++;
 		}
 	}
 	return (result);
+}
+
+int main(void)
+{
+	char str[] = "jerry micael fidimalala";
+	char charset[] = "";
+	int size = result_size(str, charset);
+	printf("size: %d\n", size);
+	char **result = ft_split(str, charset);
+
+	int i = 0;
+	while (i < size)
+	{
+		printf("i: %d - val: %s\n", i, result[i]);
+		i++;
+	}	
+	return 0;
 }
