@@ -6,141 +6,114 @@
 /*   By: mfidimal <mfidimal@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:06:07 by mfidimal          #+#    #+#             */
-/*   Updated: 2023/11/21 17:29:08 by mfidimal         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:00:43 by mfidimal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-int	ft_strlen(char *str)
+int	is_sep(char c, char *charset)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (charset[i] != '\0')
 	{
+		if (c == charset[i])
+			return (1);
 		i++;
 	}
-	return (i);
-}
-
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
-{
-	unsigned int	i;
-
-	if (n == 0)
-		return (0);
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] != '\0')
-	{
-		if (i == (n - 1))
-		{
-			return (0);
-		}
-		i++;
-	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-char *ft_strdup(char *src)
-{
-	int i;
-	char *copy;
-
-	i = 0;
-	copy = malloc(sizeof(char) * ft_strlen(src) + sizeof('\0'));
-	while (src[i] != '\0')
-	{
-		copy[i] = src[i];
-		i++;
-	}
-	copy[i] = '\0';
-	return (copy);
+	if (c == '\0')
+		return (1);
+	return (0);
 }
 
 int	result_size(char *str, char *charset)
 {
-	int	acc;
 	int	i;
-	int	charset_len;
+	int	size;
 
-	acc = 1;
+	size = 0;
 	i = 0;
-	charset_len = ft_strlen(charset);
 	while (str[i] != '\0')
 	{
-		if (ft_strncmp(charset, &str[i], charset_len) == 0)
-			acc++;
+		if (is_sep(str[i], charset) == 0 && is_sep(str[i + 1],
+				charset) == 1)
+			size++;
 		i++;
 	}
-	return (acc);
+	return (size);
+}
+
+void	copy(char *dest, char *src, char *charset)
+{
+	int	i;
+
+	i = 0;
+	while (is_sep(src[i], charset) == 0)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+}
+
+void	split(char **array, char *str, char *charset)
+{
+	int	i;
+	int	j;
+	int	result_index;
+
+	result_index = 0;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (is_sep(str[i], charset) == 1)
+			i++;
+		else
+		{
+			j = 0;
+			while (is_sep(str[i + j], charset) == 0)
+				j++;
+			array[result_index] = (char *) malloc(sizeof(char) * (j + 1));
+			copy(array[result_index], &str[i], charset);
+			i += j;
+			result_index++;
+		}
+	}
 }
 
 char	**ft_split(char *str, char *charset)
 {
 	char	**result;
-	char	*temp;
-	int		i;
-	int		result_index;
-	int		charset_len;
-	int str_len;
-	int		temp_index;
-	int		is_copy;
+	int		size;
 
-	str_len = ft_strlen(str);
-	result = malloc(sizeof(char *) * result_size(str, charset));
-	temp = malloc(sizeof(char) * str_len + sizeof('\0'));
-	if (result == NULL || temp == NULL)
-		return (NULL);
-	i = 0;
-	result_index = 0;
-	charset_len = ft_strlen(charset);
-	temp_index = 0;
-	is_copy = 0;
-	while (i < str_len)
-	{
-		if (ft_strncmp(charset, &str[i], charset_len) == 0)
-		{
-			temp[temp_index] = '\0';
-			i = i + charset_len;
-			temp_index = 0;
-			is_copy = 1;
-		}
-		else
-		{
-			temp[temp_index] = str[i];
-			temp_index++;
-			i++;
-		}
-		if (is_copy || i == str_len)
-		{
-			if (i == str_len)
-			{
-				temp[temp_index] = '\0';
-				temp_index = 0;
-			}
-			result[result_index] = ft_strdup(temp);
-			is_copy = 0;
-			result_index++;
-		}
-	}
+	size = result_size(str, charset);
+	result = (char **) malloc(sizeof(char *) * (size + 1));
+	result[size] = 0;
+	split(result, str, charset);
 	return (result);
 }
 
-int main(void)
+/*
+int	main(void)
 {
-	char str[] = "jerry micael fidimalala";
-	char charset[] = "";
-	int size = result_size(str, charset);
-	printf("size: %d\n", size);
-	char **result = ft_split(str, charset);
+	char	str[] = "jerry - micael - fidimalala";
+	char	charset[] = " - ";
+	int		size;
+	char	**result;
+	int		i;
 
-	int i = 0;
+	size = result_size(str, charset);
+	printf("size: %d\n", size);
+	result = ft_split(str, charset);
+	i = 0;
 	while (i < size)
 	{
 		printf("i: %d - val: %s\n", i, result[i]);
 		i++;
-	}	
-	return 0;
+	}
+	return (0);
 }
+*/
